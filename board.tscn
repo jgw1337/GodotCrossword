@@ -1,3 +1,84 @@
-[gd_scene format=3 uid="uid://mm4wf6op5l0"]
+[gd_scene load_steps=9 format=3 uid="uid://bi253rak6am71"]
 
-[node name="Board" type="Node2D"]
+[ext_resource type="FontVariation" uid="uid://mcwnx7s0nehr" path="res://fonts/nova_mono.tres" id="1_6g1dt"]
+[ext_resource type="Script" path="res://Board.cs" id="1_bdbi7"]
+[ext_resource type="Script" path="res://Input.cs" id="2_ohnyp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gi2um"]
+bg_color = Color(0.466667, 0.603922, 0.835294, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i3c6j"]
+bg_color = Color(0.835294, 0.517647, 0.00392157, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l8e0g"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t66wo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vjovb"]
+
+[node name="Board" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bdbi7")
+
+[node name="Background" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gi2um")
+
+[node name="MarginContainer" type="MarginContainer" parent="Background"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Rows" type="VBoxContainer" parent="Background/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="GameInfo" type="PanelContainer" parent="Background/MarginContainer/Rows"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_i3c6j")
+
+[node name="PuzzleRows" type="VBoxContainer" parent="Background/MarginContainer/Rows/GameInfo"]
+layout_mode = 2
+
+[node name="InputArea" type="PanelContainer" parent="Background/MarginContainer/Rows"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_l8e0g")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Background/MarginContainer/Rows/InputArea"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Background/MarginContainer/Rows/InputArea/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_6g1dt")
+theme_override_font_sizes/font_size = 32
+text = " > "
+
+[node name="Input" type="LineEdit" parent="Background/MarginContainer/Rows/InputArea/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_6g1dt")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_t66wo")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vjovb")
+placeholder_text = "Type one (1) letter then hit Enter"
+max_length = 1
+script = ExtResource("2_ohnyp")
+
+[connection signal="text_changed" from="Background/MarginContainer/Rows/InputArea/HBoxContainer/Input" to="Background/MarginContainer/Rows/InputArea/HBoxContainer/Input" method="_on_text_changed"]
+[connection signal="text_submitted" from="Background/MarginContainer/Rows/InputArea/HBoxContainer/Input" to="." method="_on_text_submitted"]
+[connection signal="text_submitted" from="Background/MarginContainer/Rows/InputArea/HBoxContainer/Input" to="Background/MarginContainer/Rows/InputArea/HBoxContainer/Input" method="_on_text_submitted"]

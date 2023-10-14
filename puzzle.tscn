@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvj4cbph6oa1t"]
+
+[ext_resource type="FontVariation" uid="uid://mcwnx7s0nehr" path="res://fonts/nova_mono.tres" id="1_ide78"]
+
+[node name="Puzzle" type="VBoxContainer"]
+
+[node name="Hint" type="Label" parent="."]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ide78")
+theme_override_font_sizes/font_size = 16
+text = "This is the descriptive hint"
+
+[node name="Word" type="Label" parent="."]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ide78")
+theme_override_font_sizes/font_size = 24
+text = "WORD"

@@ -1,0 +1,6 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://c1krm8qtgxh4"]
+
+[ext_resource type="FontFile" uid="uid://dyu8u3wnhjal0" path="res://fonts/Redacted-Regular.ttf" id="1_travm"]
+
+[resource]
+base_font = ExtResource("1_travm")

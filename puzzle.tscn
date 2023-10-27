@@ -4,14 +4,21 @@
 [ext_resource type="FontVariation" uid="uid://mcwnx7s0nehr" path="res://fonts/nova_mono.tres" id="1_ide78"]
 
 [node name="Puzzle" type="VBoxContainer"]
+custom_minimum_size = Vector2(1100, 0)
+offset_right = 1151.0
+offset_bottom = 58.0
 size_flags_horizontal = 3
+theme_override_constants/separation = -5
 script = ExtResource("1_36g1t")
 
 [node name="Hint" type="Label" parent="."]
+custom_minimum_size = Vector2(1100, 0)
 layout_mode = 2
+size_flags_vertical = 6
 theme_override_fonts/font = ExtResource("1_ide78")
 theme_override_font_sizes/font_size = 16
 text = "This is the descriptive hint"
+autowrap_mode = 2
 
 [node name="Word" type="Label" parent="."]
 layout_mode = 2

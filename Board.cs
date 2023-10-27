@@ -14,12 +14,20 @@ public partial class Board : Control
 
 	private readonly List<Word> _words = new()
 	{
-		new Word { Answer = "Apple", Hint = "Golden delicious" },
-		new Word { Answer = "Banana", Hint = "Don't eat with berries" },
-		new Word { Answer = "Cherry", Hint = "Washington: I cannot tell a lie" },
+		new Word { Answer = "Originator", Hint = "All classified material should be conspicuously marked by the:" },
+		new Word { Answer = "Secret", Hint = "Information or material whose unauthorized disclosure could be expected to cause serious damage to national security." },
+		new Word { Answer = "Evacuate", Hint = "If there is imminent danger to employees, the first step in an emergency is to:" },
+		new Word { Answer = "Insider Threat", Hint = "Employees who have authorized access to information the company values most, and used that information to, wittingly or unwittingly, inflict harm to the organization or National Security." },
+		new Word { Answer = "Spyware", Hint = "A type of malware installed on a computer without the knowledge of the owner in order to collect private information." },
+		new Word { Answer = "Virtru", Hint = "Use ______ to send all CUI at VSolvit." },
+		new Word { Answer = "PII", Hint = "Data that could potentially identify a specific individual." },
+		new Word { Answer = "OPSEC", Hint = "A process by which we protect unclassified information that can be used against us." },
+		new Word { Answer = "Security", Hint = "Cleared contractor employees are required to report adverse information to their ________ department." },
+		new Word { Answer = "Counterintelligence", Hint = "Information gathered and activities conducted to protect against espionage." },
+		new Word { Answer = "Need to know", Hint = "Required prior to access to classified:" }
 	};
 
-	private string _puzzleInstancePath = "Background/MarginContainer/Rows/GameInfo/PuzzleRows";
+	private string _puzzleInstancePath = "Background/MarginContainer/Rows/GameInfo/ScrollContainer/PuzzleRows";
 	private string _hiddenCharacter = "-";
 
 	// private static readonly PackedScene PuzzleScene = GD.Load<PackedScene>("res://puzzle.tscn");
@@ -38,8 +46,8 @@ public partial class Board : Control
 		foreach (var word in _words)
 		{
 			var puzzleInstance = LoadPuzzleInstance();
-			word.Display = Regex.Replace(word.Answer, "[A-Za-z ]", _hiddenCharacter);
-			((Puzzle)puzzleInstance).SetText(word.Hint, word.Display);
+			word.Display = Regex.Replace(word.Answer, "[A-Za-z0-9]", _hiddenCharacter);
+			((Puzzle)puzzleInstance).SetText($"Hint: {word.Hint}", $"Answer: {word.Display}");
 			GetNode(_puzzleInstancePath).AddChild(puzzleInstance);
 		}
 	}
@@ -63,7 +71,7 @@ public partial class Board : Control
 			
 			// word.Answer = word.Answer.Replace(new_text, "-", StringComparison.InvariantCultureIgnoreCase);
 			
-			((Puzzle)puzzleInstance).SetText(word.Hint, word.Display);
+			((Puzzle)puzzleInstance).SetText($"Hint: {word.Hint}", $"Answer: {word.Display}");
 			GetNode(_puzzleInstancePath).AddChild(puzzleInstance);
 		}
 

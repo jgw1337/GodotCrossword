@@ -50,8 +50,13 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_i3c6j")
 
-[node name="PuzzleRows" type="VBoxContainer" parent="Background/MarginContainer/Rows/GameInfo"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Background/MarginContainer/Rows/GameInfo"]
 layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="PuzzleRows" type="VBoxContainer" parent="Background/MarginContainer/Rows/GameInfo/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
 
 [node name="InputArea" type="PanelContainer" parent="Background/MarginContainer/Rows"]
 custom_minimum_size = Vector2(0, 60)

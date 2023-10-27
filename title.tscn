@@ -1,16 +1,35 @@
-[gd_scene load_steps=2 format=3 uid="uid://bj8b80tljgtl6"]
+[gd_scene load_steps=4 format=3 uid="uid://bj8b80tljgtl6"]
 
 [ext_resource type="Script" path="res://Title.cs" id="1_3np3s"]
+[ext_resource type="Texture2D" uid="uid://cfenaj1quvilw" path="res://pics/vsolvit-splash-screen.png" id="2_y28u4"]
+[ext_resource type="FontVariation" uid="uid://mcwnx7s0nehr" path="res://fonts/nova_mono.tres" id="3_guaf6"]
 
 [node name="Title" type="Node2D"]
 script = ExtResource("1_3np3s")
+metadata/_edit_vertical_guides_ = [576.0]
+
+[node name="Vsolvit-splash-screen" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(576, 324)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_y28u4")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 333.0
+offset_top = 209.0
+offset_right = 819.0
+offset_bottom = 257.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_guaf6")
+theme_override_font_sizes/font_size = 32
+text = "Enhanced Security Refresher"
 
 [node name="Play" type="Button" parent="."]
 offset_left = 451.0
 offset_top = 289.0
 offset_right = 701.0
 offset_bottom = 339.0
-text = "Play"
+text = "Start"
 
 [node name="Quit" type="Button" parent="."]
 offset_left = 451.0

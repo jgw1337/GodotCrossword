@@ -19,10 +19,10 @@ public partial class Board : Control
 		new Word { Answer = "Evacuate", Hint = "If there is imminent danger to employees, the first step in an emergency is to:" },
 		new Word { Answer = "Insider Threat", Hint = "Employees who have authorized access to information the company values most, and used that information to, wittingly or unwittingly, inflict harm to the organization or National Security." },
 		new Word { Answer = "Spyware", Hint = "A type of malware installed on a computer without the knowledge of the owner in order to collect private information." },
-		new Word { Answer = "Virtru", Hint = "Use ______ to send all CUI at VSolvit." },
+		new Word { Answer = "Virtru", Hint = "Use this Gmail plug-in to send all CUI at VSolvit." },
 		new Word { Answer = "PII", Hint = "Data that could potentially identify a specific individual." },
 		new Word { Answer = "OPSEC", Hint = "A process by which we protect unclassified information that can be used against us." },
-		new Word { Answer = "Security", Hint = "Cleared contractor employees are required to report adverse information to their ________ department." },
+		new Word { Answer = "Security", Hint = "Cleared contractor employees are required to report adverse information to this department in VSolvit." },
 		new Word { Answer = "Counterintelligence", Hint = "Information gathered and activities conducted to protect against espionage." },
 		new Word { Answer = "Need to know", Hint = "Required prior to access to classified:" }
 	};

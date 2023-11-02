@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 public partial class Board : Control
@@ -30,19 +31,9 @@ public partial class Board : Control
 	private string _puzzleInstancePath = "Background/MarginContainer/Rows/GameInfo/ScrollContainer/PuzzleRows";
 	private string _hiddenCharacter = "-";
 
-	// private static readonly PackedScene PuzzleScene = GD.Load<PackedScene>("res://puzzle.tscn");
-	// private Node _puzzleInstance = PuzzleScene.Instantiate();
-	
-	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		// foreach (var word in _words)
-		// {
-		// 	((Puzzle)_puzzleInstance).SetText(word.Hint, word.Answer);
-		// 	GetNode("Background/MarginContainer/Rows/GameInfo/PuzzleRows").AddChild(_puzzleInstance);
-		// }
-		
 		foreach (var word in _words)
 		{
 			var puzzleInstance = LoadPuzzleInstance();
@@ -55,39 +46,45 @@ public partial class Board : Control
 	private void _on_text_submitted(string new_text)
 	{
 		RemoveAllPuzzleRowsChildren();
-		
+
 		foreach (var word in _words)
 		{
 			var puzzleInstance = LoadPuzzleInstance();
 
 			var temp = string.Empty;
-			
+
 			for (var index = 0; index < word.Answer.Length; index++)
 			{
 				temp += string.Equals(word.Answer[index].ToString(), new_text, StringComparison.InvariantCultureIgnoreCase) ? new_text : word.Display[index].ToString();
 			}
-			
+
 			word.Display = temp;
-			
-			// word.Answer = word.Answer.Replace(new_text, "-", StringComparison.InvariantCultureIgnoreCase);
-			
+
 			((Puzzle)puzzleInstance).SetText($"Hint: {word.Hint}", $"Answer: {word.Display}");
 			GetNode(_puzzleInstancePath).AddChild(puzzleInstance);
 		}
 
-		// var puzzleScene = (PackedScene)ResourceLoader.Load("res://puzzle.tscn");
-		// var puzzle = (LineEdit)puzzleScene.Instantiate();
-		// AddChild(puzzle);
+		CheckForWinCondition();
 	}
 
 	private void RemoveAllPuzzleRowsChildren()
 	{
 		var node = GetNode(_puzzleInstancePath);
-		var children = node.GetChildren(); 
-		
+		var children = node.GetChildren();
+
 		foreach (var child in children)
 		{
 			node.RemoveChild(child);
+		}
+	}
+
+	private void CheckForWinCondition()
+	{
+		var allDisplayedAnswers = string.Join("", _words.Select(x => x.Display).ToArray());
+
+		if (!allDisplayedAnswers.Contains(_hiddenCharacter))
+		{
+			GetTree().ChangeSceneToFile("congrats.tscn");
 		}
 	}
 
@@ -95,6 +92,5 @@ public partial class Board : Control
 	{
 		var puzzleScene = GD.Load<PackedScene>("res://puzzle.tscn");
 		return puzzleScene.Instantiate();
-
 	}
 }
